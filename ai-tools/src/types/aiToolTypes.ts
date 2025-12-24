@@ -5,6 +5,7 @@
 export interface ToolExecutionRequest {
     toolName: string;
     inputs: Record<string, any>;
+    model?: string;
 }
 
 export interface ToolExecutionResponse<T = any> {
@@ -44,7 +45,7 @@ export interface LegacyCreativeAnalysis {
 
 export interface IntelligenceExtensionAnalysis {
     analise_habilidades: string;
-    como_a_ia_pode_ajudar: string;
+    potencial_ia: string;
     ideias_aplicaveis: string[];
     visao_de_dominio: string;
     resumo_geral: string;
@@ -70,9 +71,10 @@ export interface ProfessionalMapAnalysis {
     proposito: string;
     estrategia: string;
     acoes: string[];
-    foco_curto_prazo: string;
-    foco_medio_prazo: string;
-    foco_longo_prazo: string;
+    prazos: Array<{
+        prazo: string;
+        foco: string;
+    }>;
     resumo_geral: string;
 }
 

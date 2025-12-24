@@ -117,7 +117,7 @@ export default function IntelligenceExtension() {
                                 </div>
                                 <div className="space-y-3">
                                     <h4 className="text-restarta-teal font-bold flex items-center gap-2"><Sparkles className="w-4 h-4" /> Potencial IA</h4>
-                                    <p className="text-restarta-muted text-sm leading-relaxed">{result.data.como_a_ia_pode_ajudar}</p>
+                                    <p className="text-restarta-muted text-sm leading-relaxed">{result.data.potencial_ia}</p>
                                 </div>
                             </div>
 

@@ -11,9 +11,13 @@ import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, Sparkles, TrendingUp } from 'lucide-react';
 import type { TrendImpactAnalysis as TrendImpactAnalysisData } from '@/types/aiToolTypes';
+import { TermsAgreement } from '@/components/shared/TermsAgreement';
 
 const formSchema = z.object({
     tendencia_emergente: z.string().min(3, 'Tendência muito curta (mínimo 3 caracteres)'),
+    termsAccepted: z.boolean().refine((val) => val === true, {
+        message: 'Você deve aceitar os termos de uso para continuar.',
+    }),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -24,17 +28,22 @@ export default function TrendImpactAnalysis() {
     const {
         register,
         handleSubmit,
+        setValue,
+        watch,
         formState: { errors },
     } = useForm<FormData>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             tendencia_emergente: '',
+            termsAccepted: true, // "Ever accept all" - default accepted
         },
     });
 
     const onSubmit = (data: FormData) => {
         reset(); // Limpa resultados anteriores
-        execute(data);
+        // Remove termsAccepted before sending to API if the API doesn't expect it
+        const { termsAccepted, ...apiData } = data;
+        execute(apiData);
     };
 
     return (
@@ -84,8 +93,15 @@ export default function TrendImpactAnalysis() {
                             )}
                         </div>
 
+                        <TermsAgreement
+                            checked={watch('termsAccepted')}
+                            onCheckedChange={(checked) => setValue('termsAccepted', checked)}
+                            error={errors.termsAccepted?.message}
+                        />
+
                         <Button
                             type="submit"
+                            // ...
                             disabled={isLoading}
                             className="w-full bg-gradient-to-r from-restarta-teal to-restarta-purple hover:from-restarta-teal/90 hover:to-restarta-purple/90 text-white font-bold text-lg py-8 shadow-lg shadow-restarta-teal/20 transition-all hover:scale-[1.01]"
                         >

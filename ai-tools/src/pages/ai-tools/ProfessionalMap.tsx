@@ -154,24 +154,16 @@ export default function ProfessionalMap() {
                     </Card>
 
                     <div className="grid md:grid-cols-3 gap-6">
-                        <div className="bg-restarta-bg p-6 rounded-xl border border-restarta-border shadow-md">
-                            <h4 className="text-sm uppercase font-bold text-restarta-muted mb-3 flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-restarta-teal"></span> Curto Prazo
-                            </h4>
-                            <p className="text-white font-medium">{result.data.foco_curto_prazo}</p>
-                        </div>
-                        <div className="bg-restarta-bg p-6 rounded-xl border border-restarta-border shadow-md">
-                            <h4 className="text-sm uppercase font-bold text-restarta-muted mb-3 flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-restarta-purple"></span> Médio Prazo
-                            </h4>
-                            <p className="text-white font-medium">{result.data.foco_medio_prazo}</p>
-                        </div>
-                        <div className="bg-restarta-bg p-6 rounded-xl border border-restarta-border shadow-md">
-                            <h4 className="text-sm uppercase font-bold text-restarta-muted mb-3 flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-restarta-gold"></span> Longo Prazo
-                            </h4>
-                            <p className="text-white font-medium">{result.data.foco_longo_prazo}</p>
-                        </div>
+                        {result.data.prazos.map((item, index) => (
+                            <div key={index} className="bg-restarta-bg p-6 rounded-xl border border-restarta-border shadow-md">
+                                <h4 className="text-sm uppercase font-bold text-restarta-muted mb-3 flex items-center gap-2">
+                                    <span className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-restarta-teal' :
+                                            index === 1 ? 'bg-restarta-purple' : 'bg-restarta-gold'
+                                        }`}></span> {item.prazo}
+                                </h4>
+                                <p className="text-white font-medium">{item.foco}</p>
+                            </div>
+                        ))}
                     </div>
 
                     <div className="bg-gradient-to-r from-restarta-teal to-restarta-purple p-8 rounded-xl text-white shadow-xl relative overflow-hidden">
