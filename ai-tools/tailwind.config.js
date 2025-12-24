@@ -40,12 +40,15 @@ export default {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
                 },
-                gap4x: {
-                    blue: '#0F4C81',
-                    teal: '#37B6BD',
-                    purple: '#6A5ACD',
-                    lightBlue: '#E6F7FF',
-                    dark: '#172B4D',
+                restarta: {
+                    bg: '#0F1116',       // Main Background
+                    card: '#1A1E29',     // Card Background
+                    teal: '#00D4C5',     // Primary Accent
+                    purple: '#9D4EDD',   // Secondary Accent
+                    gold: '#FFC107',     // Highlight Accent
+                    text: '#F1F5F9',     // Primary Text
+                    muted: '#94A3B8',    // Secondary Text
+                    border: '#2D3748',   // Borders
                 }
             },
             borderRadius: {

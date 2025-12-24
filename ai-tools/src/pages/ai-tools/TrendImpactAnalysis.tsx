@@ -38,123 +38,86 @@ export default function TrendImpactAnalysis() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gap4x-lightBlue via-white to-gap4x-lightBlue p-4 md:p-8">
-            <div className="max-w-5xl mx-auto space-y-6">
-                {/* Header */}
-                <div className="text-center space-y-2 mb-8">
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                        <TrendingUp className="h-8 w-8 text-gap4x-blue" />
-                        <h1 className="text-4xl font-bold bg-gradient-to-r from-gap4x-blue to-gap4x-teal bg-clip-text text-transparent">
-                            Análise de Impacto de Tendências
-                        </h1>
+        <div className="max-w-5xl mx-auto space-y-8">
+            {/* Header */}
+            <div className="text-center space-y-4 mb-12">
+                <div className="flex items-center justify-center gap-3 mb-4">
+                    <div className="p-3 bg-restarta-card rounded-xl border border-restarta-border shadow-lg shadow-restarta-teal/10">
+                        <TrendingUp className="h-8 w-8 text-restarta-teal" />
                     </div>
-                    <p className="text-gray-600 text-lg">
-                        Descubra como uma tendência emergente afeta indústrias, setores e estratégias empresariais
-                    </p>
+                    <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+                        Análise de <span className="text-transparent bg-clip-text bg-gradient-to-r from-restarta-teal to-restarta-purple">Impacto de Tendências</span>
+                    </h1>
                 </div>
-
-                {/* Form Card */}
-                <Card className="shadow-lg border-gap4x-teal/20">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-gap4x-dark">
-                            <Sparkles className="h-5 w-5 text-gap4x-teal" />
-                            Qual tendência você quer analisar?
-                        </CardTitle>
-                        <CardDescription>
-                            Digite uma tendência emergente (ex: "IA Generativa", "Trabalho Remoto", "Sustentabilidade")
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                            <div className="space-y-2">
-                                <Label htmlFor="tendencia_emergente" className="text-gap4x-dark font-medium">Tendência Emergente *</Label>
-                                <Input
-                                    id="tendencia_emergente"
-                                    placeholder="Ex: IA Generativa"
-                                    {...register('tendencia_emergente')}
-                                    className="text-lg border-gap4x-teal/30 focus-visible:ring-gap4x-teal"
-                                    disabled={isLoading}
-                                />
-                                {errors.tendencia_emergente && (
-                                    <p className="text-sm text-red-600">
-                                        {errors.tendencia_emergente.message}
-                                    </p>
-                                )}
-                            </div>
-
-                            <Button
-                                type="submit"
-                                disabled={isLoading}
-                                className="w-full bg-gradient-to-r from-gap4x-blue to-gap4x-teal hover:from-gap4x-blue/90 hover:to-gap4x-teal/90 text-lg py-6"
-                            >
-                                {isLoading ? (
-                                    <>
-                                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                                        Analisando tendência...
-                                    </>
-                                ) : (
-                                    <>
-                                        <Sparkles className="mr-2 h-5 w-5" />
-                                        Gerar Análise Estratégica
-                                    </>
-                                )}
-                            </Button>
-                        </form>
-                    </CardContent>
-                </Card>
-
-                {/* Loading State */}
-                {isLoading && (
-                    <Card className="border-gap4x-teal/30 bg-gap4x-lightBlue/50">
-                        <CardContent className="pt-6">
-                            <div className="flex items-center gap-3">
-                                <Loader2 className="h-5 w-5 animate-spin text-gap4x-blue" />
-                                <div>
-                                    <p className="font-medium text-gap4x-blue">Processando análise...</p>
-                                    <p className="text-sm text-gap4x-dark/70">
-                                        Nosso modelo de IA está analisando a tendência e gerando insights estratégicos.
-                                    </p>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-                )}
-
-                {/* Error State */}
-                {error && (
-                    <Alert variant="destructive">
-                        <AlertDescription>
-                            <strong>Erro:</strong> {error.message}
-                        </AlertDescription>
-                    </Alert>
-                )}
-
-                {/* Result */}
-                {result?.success && result.data && (
-                    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <ToolResult result={result.data} />
-
-                        {/* Metadata */}
-                        <Card className="mt-4 border-gray-200 bg-gray-50">
-                            <CardContent className="pt-4">
-                                <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                                    <div>
-                                        <span className="font-medium">Modelo:</span> {result.metadata.model}
-                                    </div>
-                                    <div>
-                                        <span className="font-medium">Tempo:</span> {result.metadata.executionTimeMs}ms
-                                    </div>
-                                    {result.metadata.tokensUsed && (
-                                        <div>
-                                            <span className="font-medium">Tokens:</span> {result.metadata.tokensUsed}
-                                        </div>
-                                    )}
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </div>
-                )}
+                <p className="text-restarta-muted text-lg max-w-2xl mx-auto leading-relaxed">
+                    Descubra como uma tendência emergente afeta indústrias, setores e estratégias empresariais na era da inteligência artificial.
+                </p>
             </div>
+
+            {/* Form Card */}
+            <Card className="shadow-2xl border-restarta-border bg-restarta-card/50 backdrop-blur-sm relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-restarta-teal via-restarta-purple to-restarta-gold opacity-50" />
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-white text-xl">
+                        <Sparkles className="h-5 w-5 text-restarta-gold" />
+                        Qual tendência você quer analisar?
+                    </CardTitle>
+                    <CardDescription className="text-restarta-muted">
+                        Digite uma tendência emergente para gerar insights estratégicos.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                        <div className="space-y-2">
+                            <Label htmlFor="tendencia_emergente" className="text-restarta-text font-medium">Tendência Emergente</Label>
+                            <Input
+                                id="tendencia_emergente"
+                                placeholder="Ex: IA Generativa, Trabalho Híbrido, ESG..."
+                                {...register('tendencia_emergente')}
+                                className="text-lg bg-restarta-bg border-restarta-border text-white placeholder:text-restarta-muted/50 focus-visible:ring-restarta-teal h-14"
+                                disabled={isLoading}
+                            />
+                            {errors.tendencia_emergente && (
+                                <p className="text-sm text-red-400">
+                                    {errors.tendencia_emergente.message}
+                                </p>
+                            )}
+                        </div>
+
+                        <Button
+                            type="submit"
+                            disabled={isLoading}
+                            className="w-full bg-gradient-to-r from-restarta-teal to-restarta-purple hover:from-restarta-teal/90 hover:to-restarta-purple/90 text-white font-bold text-lg py-8 shadow-lg shadow-restarta-teal/20 transition-all hover:scale-[1.01]"
+                        >
+                            {isLoading ? (
+                                <>
+                                    <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+                                    Analisando tendência...
+                                </>
+                            ) : (
+                                <>
+                                    <Sparkles className="mr-2 h-6 w-6" />
+                                    Gerar Análise Estratégica
+                                </>
+                            )}
+                        </Button>
+                    </form>
+                </CardContent>
+            </Card>
+
+            {/* Result */}
+            {result?.success && result.data && (
+                <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
+                    <ToolResult result={result.data} />
+
+                    {/* Metadata */}
+                    <div className="mt-6 flex items-center justify-center gap-4 text-xs text-restarta-muted font-mono opacity-60">
+                        <span>MODELO: {result.metadata.model}</span>
+                        <span>•</span>
+                        <span>TEMPO: {result.metadata.executionTimeMs}ms</span>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

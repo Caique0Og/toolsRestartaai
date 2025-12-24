@@ -1,0 +1,10 @@
+{
+    "name": "tools-restartaai-root",
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "cd ai-tools && npm run dev",
+        "build": "cd ai-tools && npm run build",
+        "lint": "cd ai-tools && npm run lint",
+        "install-app": "cd ai-tools && npm install"
+    }
+}
